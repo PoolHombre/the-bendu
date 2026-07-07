@@ -11,6 +11,7 @@ import {
 import { supabase } from '../lib/supabase';
 import type { ClarityScore } from '../lib/types';
 import { COLOR_MAP } from '../lib/types';
+import './DetailPage.css';
 
 interface Props {
   userId: string;
@@ -50,16 +51,16 @@ export function DetailPage({ userId, onBack, onMagnifier }: Props) {
   }));
 
   return (
-    <div style={{ maxWidth: 700, margin: '0 auto', padding: 20 }}>
-      <button onClick={onBack} style={linkBtnStyle}>
+    <div>
+      <button onClick={onBack} className="btn-link">
         &larr; Back
       </button>
 
-      <h2 style={{ marginBottom: 16 }}>Codex</h2>
+      <h2 className="page-title">Codex</h2>
 
-      <section style={{ marginBottom: 32 }}>
-        <h3>How Assessment Works</h3>
-        <p style={{ fontSize: 14, color: '#555', lineHeight: 1.6 }}>
+      <section className="card section">
+        <h3 className="section-heading">How Assessment Works</h3>
+        <p className="body-text">
           Each claim is assessed for communication clarity across five dimensions
           (0-20 each): Specificity, Evidence, Assumptions, Consistency, and
           Precision. The total gives your clarity score (0-100). The Bendu does not
@@ -67,170 +68,116 @@ export function DetailPage({ userId, onBack, onMagnifier }: Props) {
           is expressed.
         </p>
 
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', margin: '12px 0' }}>
+        <div className="color-legend">
           {Object.entries(COLOR_MAP).map(([label, { hex }]) => (
-            <div
-              key={label}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                fontSize: 13,
-              }}
-            >
-              <span
-                style={{
-                  width: 14,
-                  height: 14,
-                  borderRadius: '50%',
-                  background: hex,
-                  display: 'inline-block',
-                }}
-              />
-              {label}
+            <div key={label} className="color-legend-item">
+              <span className="color-dot" style={{ background: hex }} />
+              <span>{label}</span>
             </div>
           ))}
         </div>
-        <p style={{ fontSize: 13, color: '#888' }}>
+        <p className="color-ranges">
           Red: 0-20 | Orange: 21-40 | Yellow: 41-60 | Green: 61-80 | Blue: 81-100
         </p>
       </section>
 
-      <section style={{ marginBottom: 32 }}>
-        <h3>Archive — 30 Days</h3>
+      <section className="card section">
+        <h3 className="section-heading">Archive — 30 Days</h3>
         {chartData.length > 0 ? (
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" tick={{ fontSize: 11 }} />
-              <YAxis domain={[0, 100]} />
-              <Tooltip />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--line)" />
+              <XAxis dataKey="date" tick={{ fontSize: 11, fill: 'var(--ink-3)' }} />
+              <YAxis domain={[0, 100]} tick={{ fontSize: 11, fill: 'var(--ink-3)' }} />
+              <Tooltip
+                contentStyle={{
+                  background: 'var(--card)',
+                  border: '1px solid var(--line)',
+                  borderRadius: 'var(--r-sm)',
+                  fontSize: 13,
+                }}
+              />
               <Line
                 type="monotone"
                 dataKey="score"
-                stroke="#3B82F6"
+                stroke="var(--teal)"
                 strokeWidth={2}
-                dot={{ r: 4 }}
+                dot={{ r: 4, fill: 'var(--teal)' }}
               />
             </LineChart>
           </ResponsiveContainer>
         ) : (
-          <p style={{ color: '#888' }}>No scores yet.</p>
+          <p className="empty-state">No scores yet.</p>
         )}
       </section>
 
       {selected && (
-        <section style={{ marginBottom: 32 }}>
-          <h3>
+        <section className="card section">
+          <h3 className="section-heading">
             Component Breakdown
             <span
-              style={{
-                display: 'inline-block',
-                width: 14,
-                height: 14,
-                borderRadius: '50%',
-                background: selected.color_hex,
-                marginLeft: 8,
-                verticalAlign: 'middle',
-              }}
+              className="color-dot"
+              style={{ background: selected.color_hex, marginLeft: 8, verticalAlign: 'middle' }}
             />
           </h3>
-          <p style={{ fontSize: 13, color: '#666', marginBottom: 8 }}>
+          <p className="selected-claim">
             &ldquo;{selected.post_text.slice(0, 120)}
             {selected.post_text.length > 120 ? '...' : ''}&rdquo;
           </p>
 
           {selected.component_scores &&
             Object.entries(selected.component_scores).map(([key, val]) => (
-              <div key={key} style={{ marginBottom: 8 }}>
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    fontSize: 13,
-                  }}
-                >
-                  <span style={{ textTransform: 'capitalize' }}>{key}</span>
-                  <span>{val as number}/20</span>
+              <div key={key} className="breakdown-row">
+                <div className="breakdown-meta">
+                  <span className="component-label">{key}</span>
+                  <span className="component-value">{val as number}/20</span>
                 </div>
-                <div
-                  style={{
-                    height: 6,
-                    background: '#eee',
-                    borderRadius: 3,
-                  }}
-                >
+                <div className="bar-track">
                   <div
+                    className="bar-fill"
                     style={{
-                      height: 6,
                       width: `${((val as number) / 20) * 100}%`,
                       background: selected.color_hex,
-                      borderRadius: 3,
                     }}
                   />
                 </div>
               </div>
             ))}
-          <p style={{ fontSize: 13, color: '#555', marginTop: 12 }}>
+          <p className="body-text" style={{ marginTop: 'var(--space-3)' }}>
             {selected.explanation}
           </p>
         </section>
       )}
 
       {scores.length > 1 && (
-        <section style={{ marginBottom: 32 }}>
-          <h3>Recent Assessments</h3>
-          {scores
-            .slice()
-            .reverse()
-            .slice(0, 10)
-            .map((s) => (
-              <div
-                key={s.id}
-                onClick={() => setSelected(s)}
-                style={{
-                  padding: '8px 12px',
-                  marginBottom: 4,
-                  border: '1px solid #eee',
-                  borderRadius: 4,
-                  cursor: 'pointer',
-                  borderLeft: `4px solid ${s.color_hex}`,
-                  background: selected?.id === s.id ? '#f9f9f9' : 'white',
-                  fontSize: 13,
-                }}
-              >
-                <strong>{s.score}/100</strong> &mdash;{' '}
-                {s.post_text.slice(0, 60)}
-                {s.post_text.length > 60 ? '...' : ''}
-              </div>
-            ))}
+        <section className="section">
+          <h3 className="section-heading">Recent Assessments</h3>
+          <div className="assessment-list">
+            {scores
+              .slice()
+              .reverse()
+              .slice(0, 10)
+              .map((s) => (
+                <div
+                  key={s.id}
+                  onClick={() => setSelected(s)}
+                  className={`assessment-row ${selected?.id === s.id ? 'active' : ''}`}
+                  style={{ borderLeftColor: s.color_hex }}
+                >
+                  <span className="assessment-score">{s.score}/100</span>
+                  <span className="assessment-text">
+                    {s.post_text.slice(0, 60)}
+                    {s.post_text.length > 60 ? '...' : ''}
+                  </span>
+                </div>
+              ))}
+          </div>
         </section>
       )}
 
-      <button onClick={onMagnifier} style={primaryBtnStyle}>
+      <button onClick={onMagnifier} className="btn-primary">
         Open Mirror
       </button>
     </div>
   );
 }
-
-const linkBtnStyle: React.CSSProperties = {
-  background: 'none',
-  border: 'none',
-  color: '#3B82F6',
-  cursor: 'pointer',
-  padding: 0,
-  fontSize: 14,
-  marginBottom: 16,
-  display: 'block',
-};
-
-const primaryBtnStyle: React.CSSProperties = {
-  padding: '10px 24px',
-  background: '#3B82F6',
-  color: 'white',
-  border: 'none',
-  borderRadius: 4,
-  cursor: 'pointer',
-  fontSize: 14,
-};

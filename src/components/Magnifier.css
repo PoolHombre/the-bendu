@@ -1,0 +1,101 @@
+.mirror-intro {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  margin: 0 0 var(--space-4);
+  line-height: var(--lh-body);
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.claim-bar {
+  padding: var(--space-3) var(--space-4);
+  background: var(--teal-wash);
+  border: 1px solid var(--teal-line);
+  border-radius: var(--r);
+  font-size: var(--fs-small);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.claim-text {
+  color: var(--ink-2);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-sm {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--fs-eyebrow);
+  min-height: auto;
+  flex-shrink: 0;
+}
+
+.message-scroll {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.chat-bubble {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--line-2);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.chat-bubble:last-child {
+  border-bottom: none;
+}
+
+.bubble-mirror {
+  background: var(--bg);
+}
+
+.bubble-you {
+  background: var(--card);
+}
+
+.bubble-label {
+  font-family: var(--mono);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--w-medium);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-4);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.bubble-content {
+  white-space: pre-wrap;
+  color: var(--ink-2);
+}
+
+.bubble-content.thinking {
+  color: var(--ink-4);
+  font-style: italic;
+}
+
+.chat-input-bar {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.chat-field {
+  flex: 1;
+}
+
+.btn-send {
+  padding: var(--space-2) var(--space-4);
+  flex-shrink: 0;
+}

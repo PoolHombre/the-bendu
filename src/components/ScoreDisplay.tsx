@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import type { ClarityScore, EvaluateResponse } from '../lib/types';
 import { scoreToColor } from '../lib/types';
+import './ScoreDisplay.css';
 
 interface Props {
   userId: string;
@@ -65,48 +66,21 @@ export function ScoreDisplay({ userId, onNavigateDetail }: Props) {
   const avg7d = getAverage(24 * 7);
 
   return (
-    <div style={{ maxWidth: 600, margin: '0 auto', padding: 20 }}>
-      <form onSubmit={handleEvaluate} style={{ marginBottom: 24 }}>
+    <div>
+      <form onSubmit={handleEvaluate} className="assess-form">
         <textarea
           value={postText}
           onChange={(e) => setPostText(e.target.value)}
           placeholder="Enter a claim to assess..."
           rows={4}
-          style={{
-            width: '100%',
-            padding: 12,
-            border: '1px solid #ddd',
-            borderRadius: 4,
-            fontSize: 14,
-            resize: 'vertical',
-            boxSizing: 'border-box',
-          }}
+          className="field-textarea"
         />
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            marginTop: 8,
-            padding: '10px 24px',
-            background: '#3B82F6',
-            color: 'white',
-            border: 'none',
-            borderRadius: 4,
-            cursor: 'pointer',
-          }}
-        >
+        <button type="submit" disabled={loading} className="btn-primary">
           {loading ? 'Assessing...' : 'Assess Clarity'}
         </button>
       </form>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-          gap: 12,
-          marginBottom: 24,
-        }}
-      >
+      <div className="score-grid">
         <ScoreBlock
           label="Assessment"
           score={lastScore?.score ?? scores[0]?.score ?? null}
@@ -128,48 +102,26 @@ export function ScoreDisplay({ userId, onNavigateDetail }: Props) {
       </div>
 
       {lastScore && (
-        <div
-          style={{
-            padding: 16,
-            border: '1px solid #ddd',
-            borderRadius: 4,
-            marginBottom: 16,
-          }}
-        >
-          <h3 style={{ margin: '0 0 8px' }}>
-            Score: {lastScore.score}/100
+        <div className="result-card">
+          <h3 className="result-header">
+            Score: <span className="result-score">{lastScore.score}</span>/100
             <span
-              style={{
-                display: 'inline-block',
-                width: 12,
-                height: 12,
-                borderRadius: '50%',
-                background: lastScore.color_hex,
-                marginLeft: 8,
-              }}
+              className="color-dot"
+              style={{ background: lastScore.color_hex }}
             />
           </h3>
-          <p style={{ fontSize: 14, color: '#666', margin: '0 0 12px' }}>
-            {lastScore.explanation}
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+          <p className="result-explanation">{lastScore.explanation}</p>
+          <div className="component-grid">
             {Object.entries(lastScore.components).map(([key, val]) => (
-              <div key={key} style={{ fontSize: 13 }}>
-                <strong>{key}:</strong> {val}/20
-                <div
-                  style={{
-                    height: 4,
-                    background: '#eee',
-                    borderRadius: 2,
-                    marginTop: 4,
-                  }}
-                >
+              <div key={key} className="component-item">
+                <span className="component-label">{key}</span>
+                <span className="component-value">{val}/20</span>
+                <div className="bar-track">
                   <div
+                    className="bar-fill"
                     style={{
-                      height: 4,
                       width: `${(val / 20) * 100}%`,
                       background: lastScore.color_hex,
-                      borderRadius: 2,
                     }}
                   />
                 </div>
@@ -196,30 +148,13 @@ function ScoreBlock({
   return (
     <div
       onClick={onClick}
-      style={{
-        padding: 16,
-        textAlign: 'center',
-        border: '1px solid #ddd',
-        borderRadius: 4,
-        cursor: 'pointer',
-        borderTop: `4px solid ${colorHex || '#ccc'}`,
-      }}
+      className="score-block"
+      style={{ borderTopColor: colorHex || 'var(--line)' }}
     >
-      <div style={{ fontSize: 12, color: '#666' }}>{label}</div>
-      <div style={{ fontSize: 28, fontWeight: 'bold' }}>
+      <div className="score-block-label">{label}</div>
+      <div className="score-block-value">
         {score !== null ? score : '—'}
       </div>
-      {colorHex && (
-        <div
-          style={{
-            width: 20,
-            height: 20,
-            borderRadius: '50%',
-            background: colorHex,
-            margin: '8px auto 0',
-          }}
-        />
-      )}
     </div>
   );
 }

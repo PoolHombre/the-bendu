@@ -34,11 +34,11 @@ export interface MagnifierMessage {
 
 
 export const COLOR_MAP: Record<string, { label: string; hex: string }> = {
-  Red: { label: 'Red', hex: '#EF4444' },
-  Orange: { label: 'Orange', hex: '#F97316' },
-  Yellow: { label: 'Yellow', hex: '#EAB308' },
-  Green: { label: 'Green', hex: '#22C55E' },
-  Blue: { label: 'Blue', hex: '#3B82F6' },
+  Red:    { label: 'Red',    hex: '#D32F3A' },
+  Orange: { label: 'Orange', hex: '#C9760E' },
+  Yellow: { label: 'Yellow', hex: '#B8960A' },
+  Green:  { label: 'Green',  hex: '#168A5E' },
+  Blue:   { label: 'Blue',   hex: '#0B85A8' },
 };
 
 export function scoreToColor(score: number): { label: string; hex: string } {

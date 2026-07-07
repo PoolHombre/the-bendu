@@ -1,16 +1,269 @@
-* {
-  box-sizing: border-box;
+/* =============================================================
+   The Bendu — Design Tokens
+   Adapted from AquaSol "Direction C" design system.
+   Archivo for UI, IBM Plex Mono for scores/labels/data.
+   Five-tier clarity color scale replaces AquaSol's three-verdict.
+   ============================================================= */
+
+/* ---- Self-hosted fonts -------------------------------------- */
+@font-face { font-family: 'Archivo'; font-weight: 400; font-display: swap; src: url('/fonts/archivo-400.ttf') format('truetype'); }
+@font-face { font-family: 'Archivo'; font-weight: 500; font-display: swap; src: url('/fonts/archivo-500.ttf') format('truetype'); }
+@font-face { font-family: 'Archivo'; font-weight: 600; font-display: swap; src: url('/fonts/archivo-600.ttf') format('truetype'); }
+@font-face { font-family: 'Archivo'; font-weight: 700; font-display: swap; src: url('/fonts/archivo-700.ttf') format('truetype'); }
+@font-face { font-family: 'Archivo'; font-weight: 800; font-display: swap; src: url('/fonts/archivo-800.ttf') format('truetype'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 400; font-display: swap; src: url('/fonts/ibm-plex-mono-400.ttf') format('truetype'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 500; font-display: swap; src: url('/fonts/ibm-plex-mono-500.ttf') format('truetype'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 600; font-display: swap; src: url('/fonts/ibm-plex-mono-600.ttf') format('truetype'); }
+
+:root {
+  /* ---- Families --------------------------------------------- */
+  --ui:   'Archivo', system-ui, -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* ---- Ink (text) ------------------------------------------- */
+  --ink:   #0C1B26;
+  --ink-2: #3C4A54;
+  --ink-3: #6B7782;
+  --ink-4: #9AA6AE;
+
+  /* ---- Surfaces & lines ------------------------------------- */
+  --bg:     #EEF3F5;
+  --card:   #FFFFFF;
+  --line:   #E2E8EC;
+  --line-2: #EDF1F3;
+
+  /* ---- Teal accent ------------------------------------------ */
+  --teal:      #0B85A8;
+  --teal-deep: color-mix(in srgb, var(--teal) 76%, #000);
+  --teal-wash: color-mix(in srgb, var(--teal) 12%, #fff);
+  --teal-line: color-mix(in srgb, var(--teal) 34%, #fff);
+
+  /* ---- Clarity scale (five tiers) --------------------------- */
+  --clarity-red:      #D32F3A;
+  --clarity-red-wash: #FBEAEB;
+  --clarity-red-line: #F2C4C8;
+
+  --clarity-orange:      #C9760E;
+  --clarity-orange-wash: #FBF0DF;
+  --clarity-orange-line: #E8D3A6;
+
+  --clarity-yellow:      #B8960A;
+  --clarity-yellow-wash: #FBF6E0;
+  --clarity-yellow-line: #E8DBA0;
+
+  --clarity-green:      #168A5E;
+  --clarity-green-wash: #E4F4ED;
+  --clarity-green-line: #BEE4D2;
+
+  --clarity-blue:      #0B85A8;
+  --clarity-blue-wash: color-mix(in srgb, #0B85A8 12%, #fff);
+  --clarity-blue-line: color-mix(in srgb, #0B85A8 34%, #fff);
+
+  /* ---- Type scale ------------------------------------------- */
+  --fs-display: 27px;
+  --fs-h1:      25px;
+  --fs-h2:      19px;
+  --fs-h3:      15.5px;
+  --fs-body:    14px;
+  --fs-small:   12.5px;
+  --fs-eyebrow: 10.5px;
+  --fs-button:  16px;
+  --fs-score:   36px;
+
+  --lh-tight: 1.12;
+  --lh-snug:  1.25;
+  --lh-body:  1.5;
+
+  --tr-display: -0.025em;
+  --tr-tight:   -0.01em;
+  --tr-eyebrow: 0.1em;
+
+  /* ---- Weights ---------------------------------------------- */
+  --w-regular:  400;
+  --w-medium:   500;
+  --w-semibold: 600;
+  --w-bold:     700;
+  --w-display:  740;
+
+  /* ---- Spacing ---------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* ---- Radii ------------------------------------------------ */
+  --r-sm: 10px;
+  --r:    14px;
+  --r-lg: 20px;
+  --r-xl: 26px;
+  --r-pill: 999px;
+
+  /* ---- Shadows ---------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(12,27,38,.06), 0 1px 3px rgba(12,27,38,.05);
+  --shadow-md: 0 2px 6px rgba(12,27,38,.07), 0 8px 24px rgba(12,27,38,.07);
+  --shadow-teal: 0 2px 8px rgba(11,133,168,.30);
+
+  /* ---- Layout ----------------------------------------------- */
+  --reach: 600px;
+  --tap:   52px;
 }
+
+/* ---- Reset -------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #333;
-  background: #fff;
+  font-family: var(--ui);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
   min-height: 100vh;
+}
+
+input, textarea, button, select {
+  font-family: inherit;
+}
+
+/* ---- Shared component classes ------------------------------- */
+.field-input {
+  display: block;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  font-size: var(--fs-body);
+  color: var(--ink);
+  background: var(--card);
+  min-height: var(--tap);
+  box-sizing: border-box;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field-input::placeholder { color: var(--ink-4); }
+.field-input:focus { outline: none; border-color: var(--teal); box-shadow: var(--shadow-teal); }
+
+.field-textarea {
+  display: block;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  font-family: var(--ui);
+  font-size: var(--fs-body);
+  color: var(--ink);
+  background: var(--card);
+  resize: vertical;
+  box-sizing: border-box;
+  min-height: 100px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field-textarea::placeholder { color: var(--ink-4); }
+.field-textarea:focus { outline: none; border-color: var(--teal); box-shadow: var(--shadow-teal); }
+
+.btn-primary {
+  padding: var(--space-3) var(--space-6);
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  border-radius: var(--r);
+  font-size: var(--fs-button);
+  font-weight: var(--w-semibold);
+  letter-spacing: var(--tr-tight);
+  cursor: pointer;
+  min-height: var(--tap);
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.btn-primary:hover { background: var(--teal-deep); box-shadow: var(--shadow-teal); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-full { width: 100%; }
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--teal);
+  cursor: pointer;
+  padding: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--w-medium);
+  margin-bottom: var(--space-4);
+  display: block;
+}
+
+.btn-link:hover { color: var(--teal-deep); }
+
+.btn-ghost {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--fs-small);
+  font-weight: var(--w-medium);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--card);
+  color: var(--ink-2);
+  cursor: pointer;
+  min-height: 32px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn-ghost:hover { background: var(--bg); border-color: var(--ink-4); }
+
+.color-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.page-title {
+  font-size: var(--fs-h1);
+  font-weight: var(--w-display);
+  letter-spacing: var(--tr-display);
+  margin: 0 0 var(--space-5);
+  color: var(--ink);
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--r-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.bar-track {
+  height: 4px;
+  background: var(--line-2);
+  border-radius: var(--r-pill);
+}
+
+.bar-fill {
+  height: 4px;
+  border-radius: var(--r-pill);
+  transition: width 0.3s ease;
+}
+
+.component-label {
+  font-family: var(--mono);
+  font-size: var(--fs-small);
+  font-weight: var(--w-medium);
+  text-transform: capitalize;
+  color: var(--ink-2);
+}
+
+.component-value {
+  font-family: var(--mono);
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
 }

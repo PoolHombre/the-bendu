@@ -1,0 +1,45 @@
+.app-loading {
+  padding: 40px;
+  text-align: center;
+  color: var(--ink-3);
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.topbar {
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card);
+}
+
+.topbar-title {
+  font-size: var(--fs-h3);
+  font-weight: var(--w-bold);
+  letter-spacing: var(--tr-tight);
+  margin: 0;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.topbar-right {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.topbar-email {
+  font-family: var(--mono);
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+}
+
+.main-content {
+  max-width: var(--reach);
+  margin: 0 auto;
+  padding: var(--space-5);
+}
