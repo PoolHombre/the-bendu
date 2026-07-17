@@ -4,6 +4,7 @@ import './Magnifier.css';
 
 interface Props {
   userId: string;
+  initialClaim?: string;
   onBack: () => void;
 }
 
@@ -15,8 +16,8 @@ function extractRevisedClaim(messages: MagnifierMessage[]): string | null {
   return match[1].trim().replace(/^["']|["']$/g, '');
 }
 
-export function Magnifier({ userId, onBack }: Props) {
-  const [claim, setClaim] = useState('');
+export function Magnifier({ userId, initialClaim = '', onBack }: Props) {
+  const [claim, setClaim] = useState(initialClaim);
   const [started, setStarted] = useState(false);
   const [messages, setMessages] = useState<MagnifierMessage[]>([]);
   const [input, setInput] = useState('');
@@ -121,7 +122,7 @@ export function Magnifier({ userId, onBack }: Props) {
   return (
     <div>
       <button onClick={onBack} className="btn-link">
-        &larr; Back to Codex
+        &larr; Back
       </button>
 
       <h2 className="page-title">Mirror</h2>

@@ -16,7 +16,7 @@ import './DetailPage.css';
 interface Props {
   userId: string;
   onBack: () => void;
-  onMagnifier: () => void;
+  onMagnifier: (claim: string) => void;
 }
 
 export function DetailPage({ userId, onBack, onMagnifier }: Props) {
@@ -175,7 +175,10 @@ export function DetailPage({ userId, onBack, onMagnifier }: Props) {
         </section>
       )}
 
-      <button onClick={onMagnifier} className="btn-primary">
+      <button
+        onClick={() => onMagnifier(selected?.post_text ?? '')}
+        className="btn-primary"
+      >
         Open Mirror
       </button>
     </div>

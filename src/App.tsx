@@ -13,6 +13,12 @@ function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState<Page>('home');
+  const [mirrorClaim, setMirrorClaim] = useState('');
+
+  function openMirror(claim = '') {
+    setMirrorClaim(claim);
+    setPage('magnifier');
+  }
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -64,17 +70,22 @@ function App() {
           <ScoreDisplay
             userId={userId}
             onNavigateDetail={() => setPage('detail')}
+            onOpenMirror={openMirror}
           />
         )}
         {page === 'detail' && (
           <DetailPage
             userId={userId}
             onBack={() => setPage('home')}
-            onMagnifier={() => setPage('magnifier')}
+            onMagnifier={openMirror}
           />
         )}
         {page === 'magnifier' && (
-          <Magnifier userId={userId} onBack={() => setPage('detail')} />
+          <Magnifier
+            userId={userId}
+            initialClaim={mirrorClaim}
+            onBack={() => setPage('home')}
+          />
         )}
       </main>
     </div>

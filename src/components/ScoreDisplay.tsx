@@ -7,9 +7,10 @@ import './ScoreDisplay.css';
 interface Props {
   userId: string;
   onNavigateDetail: () => void;
+  onOpenMirror: (claim: string) => void;
 }
 
-export function ScoreDisplay({ userId, onNavigateDetail }: Props) {
+export function ScoreDisplay({ userId, onNavigateDetail, onOpenMirror }: Props) {
   const [postText, setPostText] = useState('');
   const [loading, setLoading] = useState(false);
   const [lastScore, setLastScore] = useState<EvaluateResponse | null>(null);
@@ -75,9 +76,20 @@ export function ScoreDisplay({ userId, onNavigateDetail }: Props) {
           rows={4}
           className="field-textarea"
         />
-        <button type="submit" disabled={loading} className="btn-primary">
-          {loading ? 'Assessing...' : 'Assess Clarity'}
-        </button>
+        <div className="assess-actions">
+          <button type="submit" disabled={loading} className="btn-primary">
+            {loading ? 'Assessing...' : 'Assess Clarity'}
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              onOpenMirror(postText.trim() || scores[0]?.post_text || '')
+            }
+            className="btn-ghost"
+          >
+            Open Mirror
+          </button>
+        </div>
       </form>
 
       <div className="score-grid">
