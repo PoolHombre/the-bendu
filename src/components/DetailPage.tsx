@@ -45,7 +45,7 @@ export function DetailPage({ userId, onBack, onMagnifier }: Props) {
   }
 
   const chartData = scores.map((s) => ({
-    date: new Date(s.created_at).toLocaleDateString(),
+    ts: new Date(s.created_at).getTime(),
     score: s.score,
     color: s.color_hex,
   }));
@@ -88,9 +88,16 @@ export function DetailPage({ userId, onBack, onMagnifier }: Props) {
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--line)" />
-              <XAxis dataKey="date" tick={{ fontSize: 11, fill: 'var(--ink-3)' }} />
+              <XAxis
+                dataKey="ts"
+                type="number"
+                domain={['dataMin', 'dataMax']}
+                tickFormatter={(t: number) => new Date(t).toLocaleDateString()}
+                tick={{ fontSize: 11, fill: 'var(--ink-3)' }}
+              />
               <YAxis domain={[0, 100]} tick={{ fontSize: 11, fill: 'var(--ink-3)' }} />
               <Tooltip
+                labelFormatter={(t) => new Date(Number(t)).toLocaleString()}
                 contentStyle={{
                   background: 'var(--card)',
                   border: '1px solid var(--line)',
@@ -101,9 +108,20 @@ export function DetailPage({ userId, onBack, onMagnifier }: Props) {
               <Line
                 type="monotone"
                 dataKey="score"
-                stroke="var(--teal)"
-                strokeWidth={2}
-                dot={{ r: 4, fill: 'var(--teal)' }}
+                stroke="var(--ink-4)"
+                strokeWidth={1.5}
+                dot={(props) => {
+                  const { cx, cy, payload, index } = props;
+                  return (
+                    <circle
+                      key={index}
+                      cx={cx}
+                      cy={cy}
+                      r={4}
+                      fill={payload.color}
+                    />
+                  );
+                }}
               />
             </LineChart>
           </ResponsiveContainer>
