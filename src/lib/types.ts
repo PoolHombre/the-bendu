@@ -39,12 +39,16 @@ export const COLOR_MAP: Record<string, { label: string; hex: string }> = {
   Yellow: { label: 'Yellow', hex: '#B8960A' },
   Green:  { label: 'Green',  hex: '#168A5E' },
   Blue:   { label: 'Blue',   hex: '#0B85A8' },
+  Indigo: { label: 'Indigo', hex: '#4650B4' },
+  Violet: { label: 'Violet', hex: '#7A3EA3' },
 };
 
 export function scoreToColor(score: number): { label: string; hex: string } {
-  if (score <= 20) return COLOR_MAP.Red;
-  if (score <= 40) return COLOR_MAP.Orange;
-  if (score <= 60) return COLOR_MAP.Yellow;
-  if (score <= 80) return COLOR_MAP.Green;
-  return COLOR_MAP.Blue;
+  if (score < 33) return COLOR_MAP.Red;
+  if (score < 60) return COLOR_MAP.Orange;
+  if (score < 80) return COLOR_MAP.Yellow;
+  if (score < 91) return COLOR_MAP.Green;
+  if (score < 96) return COLOR_MAP.Blue;
+  if (score < 99) return COLOR_MAP.Indigo;
+  return COLOR_MAP.Violet;
 }

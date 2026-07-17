@@ -47,7 +47,7 @@ V1 has no automated tests. Testing is manual.
 ## Planned Automated Tests
 
 ### Unit Tests (not yet implemented)
-- `scoreToColor()` — verify color mapping for boundary values (0, 20, 21, 40, 41, 60, 61, 80, 81, 100)
+- `scoreToColor()` — verify color mapping for boundary values (0, 32, 33, 59, 60, 79, 80, 90, 91, 95, 96, 98, 99, 100); boundary value belongs to the higher tier
 - Component score validation — verify components sum to total score
 - Color label to hex mapping
 

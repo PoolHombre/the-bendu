@@ -59,6 +59,14 @@
   --clarity-blue-wash: color-mix(in srgb, #0B85A8 12%, #fff);
   --clarity-blue-line: color-mix(in srgb, #0B85A8 34%, #fff);
 
+  --clarity-indigo:      #4650B4;
+  --clarity-indigo-wash: color-mix(in srgb, #4650B4 12%, #fff);
+  --clarity-indigo-line: color-mix(in srgb, #4650B4 34%, #fff);
+
+  --clarity-violet:      #7A3EA3;
+  --clarity-violet-wash: color-mix(in srgb, #7A3EA3 12%, #fff);
+  --clarity-violet-line: color-mix(in srgb, #7A3EA3 34%, #fff);
+
   /* ---- Type scale ------------------------------------------- */
   --fs-display: 27px;
   --fs-h1:      25px;

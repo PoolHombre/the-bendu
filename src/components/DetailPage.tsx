@@ -77,7 +77,8 @@ export function DetailPage({ userId, onBack, onMagnifier }: Props) {
           ))}
         </div>
         <p className="color-ranges">
-          Red: 0-20 | Orange: 21-40 | Yellow: 41-60 | Green: 61-80 | Blue: 81-100
+          Red: 0-33 | Orange: 33-60 | Yellow: 60-80 | Green: 80-91 | Blue: 91-96
+          | Indigo: 96-99 | Violet: 99-100
         </p>
       </section>
 
