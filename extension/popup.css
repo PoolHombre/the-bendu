@@ -137,6 +137,22 @@ body {
 
 .btn-ghost:hover { background: var(--bg); }
 
+.auth-toggle {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 6px;
+  background: none;
+  border: none;
+  color: var(--teal);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+}
+
+.auth-toggle:hover { text-decoration: underline; }
+
 .btn-full { width: 100%; }
 
 /* ---- Error -------------------------------------------------- */

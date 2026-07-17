@@ -1,26 +1,30 @@
 const $ = (s) => document.getElementById(s);
 
+const SUPABASE_URL = 'https://bgvfuuylrahzkylzztwf.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJndmZ1dXlscmFoemt5bHp6dHdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyNTczODgsImV4cCI6MjA5OTgzMzM4OH0.fAZEoBgY8UN7Kj_1bmBQioSSi2MGo99lXNhAFgEeRmk';
+const API_BASE = 'https://the-bendu.vercel.app';
+
 const authView = $('auth-view');
 const mainView = $('main-view');
 const authForm = $('auth-form');
 const authError = $('auth-error');
 const authBtn = $('auth-btn');
+const authToggle = $('auth-toggle');
 const claimInput = $('claim-input');
 const assessBtn = $('assess-btn');
 const resultCard = $('result-card');
 const loading = $('loading');
 
 let session = null;
-let apiBase = '';
+let isSignUp = false;
 
 init();
 
 async function init() {
-  const data = await chrome.storage.local.get(['session', 'apiBase', 'pendingText', 'selectedText']);
+  const data = await chrome.storage.local.get(['session', 'pendingText', 'selectedText']);
 
-  if (data.session && data.apiBase) {
+  if (data.session) {
     session = data.session;
-    apiBase = data.apiBase;
     showMain();
 
     const text = data.pendingText || data.selectedText || '';
@@ -30,7 +34,6 @@ async function init() {
     }
   } else {
     showAuth();
-    if (data.apiBase) $('api-base').value = data.apiBase;
   }
 }
 
@@ -44,6 +47,13 @@ function showMain() {
   mainView.hidden = false;
 }
 
+// Auth toggle
+authToggle.addEventListener('click', () => {
+  isSignUp = !isSignUp;
+  authBtn.textContent = isSignUp ? 'Sign Up' : 'Sign In';
+  authToggle.textContent = isSignUp ? 'Already have an account? Sign in' : 'Need an account? Sign up';
+});
+
 // Auth
 authForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -51,16 +61,19 @@ authForm.addEventListener('submit', async (e) => {
   authBtn.disabled = true;
   authBtn.textContent = '...';
 
-  apiBase = $('api-base').value.replace(/\/$/, '');
   const email = $('email').value;
   const password = $('password').value;
 
   try {
-    const res = await fetch(`${apiBase}/auth/v1/token?grant_type=password`, {
+    const endpoint = isSignUp
+      ? `${SUPABASE_URL}/auth/v1/signup`
+      : `${SUPABASE_URL}/auth/v1/token?grant_type=password`;
+
+    const res = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'apikey': await getAnonKey(apiBase),
+        'apikey': SUPABASE_ANON_KEY,
       },
       body: JSON.stringify({ email, password }),
     });
@@ -71,12 +84,16 @@ authForm.addEventListener('submit', async (e) => {
     }
 
     const data = await res.json();
+    if (!data.access_token) {
+      throw new Error('Check your email to confirm your account, then sign in.');
+    }
+
     session = {
       access_token: data.access_token,
       user: data.user,
     };
 
-    await chrome.storage.local.set({ session, apiBase });
+    await chrome.storage.local.set({ session });
     showMain();
   } catch (err) {
     authError.textContent = err.message;
@@ -84,17 +101,8 @@ authForm.addEventListener('submit', async (e) => {
   }
 
   authBtn.disabled = false;
-  authBtn.textContent = 'Sign In';
+  authBtn.textContent = isSignUp ? 'Sign Up' : 'Sign In';
 });
-
-async function getAnonKey(base) {
-  const stored = await chrome.storage.local.get('anonKey');
-  if (stored.anonKey) return stored.anonKey;
-
-  const key = prompt('Enter your Supabase anon key:');
-  if (key) await chrome.storage.local.set({ anonKey: key });
-  return key || '';
-}
 
 // Sign out
 $('sign-out').addEventListener('click', async () => {
@@ -111,19 +119,21 @@ assessBtn.addEventListener('click', async () => {
   assessBtn.disabled = true;
   resultCard.hidden = true;
   loading.hidden = false;
+  authError.hidden = true;
 
   try {
-    const result = await new Promise((resolve, reject) => {
-      chrome.runtime.sendMessage(
-        { type: 'evaluate', apiBase, userId: session.user.id, postText: text },
-        (res) => {
-          if (chrome.runtime.lastError) return reject(new Error(chrome.runtime.lastError.message));
-          if (res.error) return reject(new Error(res.error));
-          resolve(res);
-        }
-      );
+    const res = await fetch(`${API_BASE}/api/evaluate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: session.user.id, post_text: text }),
     });
 
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `API error (${res.status})`);
+    }
+
+    const result = await res.json();
     renderResult(result);
   } catch (err) {
     authError.textContent = err.message;

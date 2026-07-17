@@ -1,3 +1,5 @@
+const API_BASE = 'https://the-bendu.vercel.app';
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: 'bendu-assess',
@@ -15,15 +17,15 @@ chrome.contextMenus.onClicked.addListener((info) => {
 
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (msg.type === 'evaluate') {
-    handleEvaluate(msg.apiBase, msg.userId, msg.postText)
+    handleEvaluate(msg.userId, msg.postText)
       .then(sendResponse)
       .catch((err) => sendResponse({ error: err.message }));
     return true;
   }
 });
 
-async function handleEvaluate(apiBase, userId, postText) {
-  const res = await fetch(`${apiBase}/api/evaluate`, {
+async function handleEvaluate(userId, postText) {
+  const res = await fetch(`${API_BASE}/api/evaluate`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ user_id: userId, post_text: postText }),
