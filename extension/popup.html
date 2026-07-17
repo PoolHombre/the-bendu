@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=420">
+  <title>The Bendu</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Auth view -->
+  <div id="auth-view" class="view" hidden>
+    <h1 class="title">The Bendu</h1>
+    <p class="subtitle">Sign in to assess clarity</p>
+    <form id="auth-form">
+      <input id="api-base" type="url" placeholder="API base URL (e.g. https://the-bendu.vercel.app)" class="field" required>
+      <input id="email" type="email" placeholder="Email" class="field" required>
+      <input id="password" type="password" placeholder="Password" class="field" required minlength="6">
+      <p id="auth-error" class="error" hidden></p>
+      <button type="submit" class="btn-primary" id="auth-btn">Sign In</button>
+    </form>
+  </div>
+
+  <!-- Main view -->
+  <div id="main-view" class="view" hidden>
+    <header class="topbar">
+      <span class="topbar-title">The Bendu</span>
+      <button id="sign-out" class="btn-ghost">Sign Out</button>
+    </header>
+
+    <div class="content">
+      <textarea id="claim-input" class="field field-textarea" rows="3" placeholder="Paste or select text to assess..."></textarea>
+      <button id="assess-btn" class="btn-primary btn-full">Assess Clarity</button>
+
+      <!-- Result card -->
+      <div id="result-card" class="result-card" hidden>
+        <div class="result-header">
+          <span class="result-label">Score</span>
+          <span id="result-score" class="result-score"></span>
+          <span id="result-dot" class="color-dot"></span>
+        </div>
+        <p id="result-explanation" class="result-explanation"></p>
+        <div id="result-components" class="component-list"></div>
+      </div>
+
+      <!-- Loading -->
+      <div id="loading" class="loading" hidden>
+        <div class="spinner"></div>
+        <span>Assessing clarity...</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

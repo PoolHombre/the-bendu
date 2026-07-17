@@ -1,0 +1,254 @@
+/* ---- AquaSol tokens (subset for extension popup) ------------ */
+:root {
+  --ui:   'Archivo', system-ui, -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --ink:   #0C1B26;
+  --ink-2: #3C4A54;
+  --ink-3: #6B7782;
+  --ink-4: #9AA6AE;
+
+  --bg:     #EEF3F5;
+  --card:   #FFFFFF;
+  --line:   #E2E8EC;
+  --line-2: #EDF1F3;
+
+  --teal:      #0B85A8;
+  --teal-deep: #085f78;
+  --teal-wash: #e6f4f8;
+
+  --clarity-red:    #D32F3A;
+  --clarity-orange: #C9760E;
+  --clarity-yellow: #B8960A;
+  --clarity-green:  #168A5E;
+  --clarity-blue:   #0B85A8;
+
+  --fs-h3:      15.5px;
+  --fs-body:    13px;
+  --fs-small:   11.5px;
+  --fs-eyebrow: 10px;
+  --fs-button:  14px;
+
+  --r:    12px;
+  --r-sm: 8px;
+  --r-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(12,27,38,.06), 0 1px 3px rgba(12,27,38,.05);
+  --shadow-teal: 0 2px 8px rgba(11,133,168,.30);
+}
+
+/* ---- Reset -------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  width: 380px;
+  min-height: 200px;
+  margin: 0;
+  font-family: var(--ui);
+  font-size: var(--fs-body);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Views -------------------------------------------------- */
+.view { padding: 16px; }
+
+.title {
+  font-size: 20px;
+  font-weight: 740;
+  letter-spacing: -0.025em;
+  margin: 0 0 2px;
+}
+
+.subtitle {
+  font-size: var(--fs-body);
+  color: var(--ink-3);
+  margin: 0 0 16px;
+}
+
+/* ---- Topbar ------------------------------------------------- */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.topbar-title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Fields ------------------------------------------------- */
+.field {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  font-family: var(--ui);
+  font-size: var(--fs-body);
+  color: var(--ink);
+  background: var(--card);
+  margin-bottom: 8px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field::placeholder { color: var(--ink-4); }
+.field:focus { outline: none; border-color: var(--teal); box-shadow: var(--shadow-teal); }
+
+.field-textarea {
+  resize: vertical;
+  min-height: 64px;
+  line-height: 1.5;
+}
+
+/* ---- Buttons ------------------------------------------------ */
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  border-radius: var(--r);
+  font-size: var(--fs-button);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.btn-primary:hover { background: var(--teal-deep); box-shadow: var(--shadow-teal); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-ghost {
+  padding: 4px 10px;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--card);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.btn-ghost:hover { background: var(--bg); }
+
+.btn-full { width: 100%; }
+
+/* ---- Error -------------------------------------------------- */
+.error {
+  color: var(--clarity-red);
+  font-size: var(--fs-small);
+  margin: 0 0 8px;
+}
+
+/* ---- Result card -------------------------------------------- */
+.result-card {
+  margin-top: 12px;
+  background: var(--card);
+  border-radius: var(--r-lg);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.result-label {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.result-score {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.color-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.result-explanation {
+  font-size: var(--fs-body);
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+/* ---- Component bars ----------------------------------------- */
+.component-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.component-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px;
+  align-items: center;
+}
+
+.component-name {
+  font-family: var(--mono);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  text-transform: capitalize;
+  color: var(--ink-2);
+}
+
+.component-val {
+  font-family: var(--mono);
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-track {
+  grid-column: 1 / -1;
+  height: 3px;
+  background: var(--line-2);
+  border-radius: 99px;
+}
+
+.bar-fill {
+  height: 3px;
+  border-radius: 99px;
+  transition: width 0.3s ease;
+}
+
+/* ---- Loading ------------------------------------------------ */
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--ink-3);
+  font-size: var(--fs-small);
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--line);
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
