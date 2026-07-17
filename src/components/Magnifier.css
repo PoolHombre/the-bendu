@@ -99,3 +99,84 @@
   padding: var(--space-2) var(--space-4);
   flex-shrink: 0;
 }
+
+/* ---- Score Revision / Comparison ----------------------------- */
+.score-revision-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+}
+
+.score-error {
+  color: var(--clarity-red);
+  font-size: var(--fs-small);
+  margin: 0;
+}
+
+.comparison-panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  margin-top: var(--space-2);
+}
+
+.comparison-title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-1);
+}
+
+.comparison-overall {
+  font-family: var(--mono);
+  font-size: var(--fs-body);
+  color: var(--ink-2);
+  margin: 0 0 var(--space-3);
+}
+
+.comparison-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.delta-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px;
+  align-items: center;
+}
+
+.delta-track {
+  grid-column: 1 / -1;
+  display: flex;
+  overflow: hidden;
+}
+
+.delta-segment {
+  height: 100%;
+}
+
+.comparison-legend {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+  font-size: var(--fs-eyebrow);
+  color: var(--ink-3);
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  vertical-align: -1px;
+  margin-right: 4px;
+}
+
+.swatch-red { background: var(--clarity-red); }
+.swatch-blue { background: var(--clarity-blue); }

@@ -73,7 +73,9 @@ function App() {
             onMagnifier={() => setPage('magnifier')}
           />
         )}
-        {page === 'magnifier' && <Magnifier onBack={() => setPage('detail')} />}
+        {page === 'magnifier' && (
+          <Magnifier userId={userId} onBack={() => setPage('detail')} />
+        )}
       </main>
     </div>
   );

@@ -21,7 +21,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { user_id, post_text } = req.body;
+  const { user_id, post_text, save = true } = req.body;
   if (!user_id || !post_text) {
     return res.status(400).json({ error: 'user_id and post_text required' });
   }
@@ -62,26 +62,30 @@ Claim to assess:
     const result = JSON.parse(text);
     const color = scoreToColor(result.score);
 
-    const { data, error } = await supabase
-      .from('clarity_scores')
-      .insert({
-        user_id,
-        post_text,
-        score: result.score,
-        color: color.label,
-        color_hex: color.hex,
-        component_scores: result.components,
-        explanation: result.explanation,
-      })
-      .select()
-      .single();
+    let id: string | null = null;
+    if (save) {
+      const { data, error } = await supabase
+        .from('clarity_scores')
+        .insert({
+          user_id,
+          post_text,
+          score: result.score,
+          color: color.label,
+          color_hex: color.hex,
+          component_scores: result.components,
+          explanation: result.explanation,
+        })
+        .select()
+        .single();
 
-    if (error) {
-      return res.status(500).json({ error: error.message });
+      if (error) {
+        return res.status(500).json({ error: error.message });
+      }
+      id = data.id;
     }
 
     return res.status(200).json({
-      id: data.id,
+      id,
       score: result.score,
       color: color.label,
       color_hex: color.hex,
