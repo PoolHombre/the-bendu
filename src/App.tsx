@@ -4,6 +4,7 @@ import { Auth } from './components/Auth';
 import { ScoreDisplay } from './components/ScoreDisplay';
 import { DetailPage } from './components/DetailPage';
 import { Magnifier } from './components/Magnifier';
+import { BenduMark } from './components/Logo';
 import type { Session } from '@supabase/supabase-js';
 import './App.css';
 
@@ -49,9 +50,10 @@ function App() {
     <div className="app-shell">
       <header className="topbar">
         <h1
-          className="topbar-title"
+          className="topbar-title topbar-brand"
           onClick={() => setPage('home')}
         >
+          <BenduMark size={22} />
           The Bendu
         </h1>
         <div className="topbar-right">

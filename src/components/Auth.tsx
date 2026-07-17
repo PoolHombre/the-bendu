@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
+import { RefractionIllustration } from './Logo';
 import './Auth.css';
 
 export function Auth() {
@@ -27,6 +28,9 @@ export function Auth() {
   return (
     <div className="auth-page">
       <div className="auth-card">
+        <div className="auth-illustration">
+          <RefractionIllustration width={200} />
+        </div>
         <h1 className="auth-title">The Bendu</h1>
         <p className="auth-subtitle">Personal clarity evaluation</p>
 
