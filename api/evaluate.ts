@@ -60,6 +60,14 @@ Claim to assess:
     let text = textBlock && textBlock.type === 'text' ? textBlock.text : '';
     text = text.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/g, '').trim();
     const result = JSON.parse(text);
+
+    // The overall score IS the sum of the five 0-20 components; the model's
+    // holistic number can disagree with its own component scores.
+    const componentSum = Object.values(
+      result.components as Record<string, number>
+    ).reduce((sum, v) => sum + Math.max(0, Math.min(20, v)), 0);
+    result.score = Math.max(0, Math.min(100, componentSum));
+
     const color = scoreToColor(result.score);
 
     let id: string | null = null;
