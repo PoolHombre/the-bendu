@@ -17,7 +17,7 @@ Guide the user through analyzing their claim using the Toulmin model. Ask ONE qu
 4. "Why should we trust that warrant?" (backing)
 5. "How certain are you? What qualifiers apply?" (qualifier)
 6. "What would prove you wrong?" (rebuttal)
-After each answer, give brief feedback on the clarity strength of their response before asking the next question. At the end, summarize the argument's clarity strengths and gaps.`;
+After each answer, give brief feedback on the clarity strength of their response before asking the next question. At the end, summarize the argument's clarity strengths and gaps, then close with a section headed "## Revised Claim" containing a single rewritten version of the user's claim that incorporates what the conversation surfaced: the scope and qualifiers they settled on, the evidence they actually have, and awareness of the rebuttal conditions. Write it in the user's voice, as a claim they could state directly — not a description of the claim. Keep it to one to three sentences.`;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
