@@ -47,8 +47,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       messages,
     });
 
-    const text =
-      message.content[0].type === 'text' ? message.content[0].text : '';
+    const textBlock = message.content.find((b) => b.type === 'text');
+    const text = textBlock && textBlock.type === 'text' ? textBlock.text : '';
+
+    if (!text) {
+      return res.status(502).json({ error: 'Model returned no text' });
+    }
 
     return res.status(200).json({
       response: text,

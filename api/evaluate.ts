@@ -56,8 +56,8 @@ Claim to assess:
       ],
     });
 
-    let text =
-      message.content[0].type === 'text' ? message.content[0].text : '';
+    const textBlock = message.content.find((b) => b.type === 'text');
+    let text = textBlock && textBlock.type === 'text' ? textBlock.text : '';
     text = text.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/g, '').trim();
     const result = JSON.parse(text);
     const color = scoreToColor(result.score);
