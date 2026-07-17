@@ -181,25 +181,6 @@ export function Magnifier({ userId, initialClaim = '', onBack }: Props) {
               </div>
             )}
 
-            {revisedClaim && !comparison && (
-              <div className="score-revision-bar">
-                <button
-                  onClick={() => scoreRevision(revisedClaim)}
-                  disabled={scoring}
-                  className="btn-primary"
-                >
-                  {scoring ? 'Scoring...' : 'Score Revision'}
-                </button>
-                {scoreError && <p className="score-error">{scoreError}</p>}
-              </div>
-            )}
-
-            {comparison && (
-              <ComparisonPanel
-                initial={comparison.initial}
-                revised={comparison.revised}
-              />
-            )}
             <div ref={bottomRef} />
           </div>
 
@@ -219,6 +200,26 @@ export function Magnifier({ userId, initialClaim = '', onBack }: Props) {
               Send
             </button>
           </div>
+
+          {revisedClaim && !comparison && (
+            <div className="score-revision-bar">
+              <button
+                onClick={() => scoreRevision(revisedClaim)}
+                disabled={scoring}
+                className="btn-primary"
+              >
+                {scoring ? 'Scoring...' : 'Score Revision'}
+              </button>
+              {scoreError && <p className="score-error">{scoreError}</p>}
+            </div>
+          )}
+
+          {comparison && (
+            <ComparisonPanel
+              initial={comparison.initial}
+              revised={comparison.revised}
+            />
+          )}
         </div>
       )}
     </div>
