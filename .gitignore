@@ -35,3 +35,6 @@ lerna-debug.log*
 
 # Claude Code
 .claude/launch.json
+
+.vercel
+.env*

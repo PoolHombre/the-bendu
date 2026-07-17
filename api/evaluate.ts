@@ -9,11 +9,11 @@ const supabase = createClient(
 );
 
 function scoreToColor(score: number): { label: string; hex: string } {
-  if (score <= 20) return { label: 'Red', hex: '#EF4444' };
-  if (score <= 40) return { label: 'Orange', hex: '#F97316' };
-  if (score <= 60) return { label: 'Yellow', hex: '#EAB308' };
-  if (score <= 80) return { label: 'Green', hex: '#22C55E' };
-  return { label: 'Blue', hex: '#3B82F6' };
+  if (score <= 20) return { label: 'Red', hex: '#D32F3A' };
+  if (score <= 40) return { label: 'Orange', hex: '#C9760E' };
+  if (score <= 60) return { label: 'Yellow', hex: '#B8960A' };
+  if (score <= 80) return { label: 'Green', hex: '#168A5E' };
+  return { label: 'Blue', hex: '#0B85A8' };
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
