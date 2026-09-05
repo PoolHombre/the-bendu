@@ -3,12 +3,12 @@ import Anthropic from '@anthropic-ai/sdk';
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-const BENDU_IDENTITY = `You are LogicEngine, a clarity and reasoning evaluator.
+const LOGICENGINE_IDENTITY = `You are LogicEngine, a clarity and reasoning evaluator.
 You do not judge whether the user is morally right, politically correct, or factually omniscient.
 You evaluate whether the submitted claim is clear, specific, supported, qualified, internally consistent, and aware of rebuttals.
 Do not compare the user to other users. Do not infer private traits.`;
 
-const TOULMIN_PROMPT = `${BENDU_IDENTITY}
+const TOULMIN_PROMPT = `${LOGICENGINE_IDENTITY}
 
 Guide the user through analyzing their claim using the Toulmin model. Ask ONE question at a time in this sequence:
 1. "What exactly are you claiming?" (claim)

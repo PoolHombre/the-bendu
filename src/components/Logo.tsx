@@ -1,4 +1,4 @@
-export function BenduMark({ size = 24 }: { size?: number }) {
+export function LogicEngineMark({ size = 24 }: { size?: number }) {
   return (
     <svg
       width={size}

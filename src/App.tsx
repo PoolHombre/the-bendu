@@ -4,7 +4,7 @@ import { Auth } from './components/Auth';
 import { ScoreDisplay } from './components/ScoreDisplay';
 import { DetailPage } from './components/DetailPage';
 import { Magnifier } from './components/Magnifier';
-import { BenduMark } from './components/Logo';
+import { LogicEngineMark } from './components/Logo';
 import type { Session } from '@supabase/supabase-js';
 import './App.css';
 
@@ -53,7 +53,7 @@ function App() {
           className="topbar-title topbar-brand"
           onClick={() => setPage('home')}
         >
-          <BenduMark size={22} />
+          <LogicEngineMark size={22} />
           LogicEngine
         </h1>
         <div className="topbar-right">
