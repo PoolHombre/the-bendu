@@ -31,7 +31,7 @@ export function Auth() {
         <div className="auth-illustration">
           <RefractionIllustration width={200} />
         </div>
-        <h1 className="auth-title">The Bendu</h1>
+        <h1 className="auth-title">LogicEngine</h1>
         <p className="auth-subtitle">Personal clarity evaluation</p>
 
         <form onSubmit={handleSubmit} className="auth-form">

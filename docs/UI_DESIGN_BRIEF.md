@@ -1,8 +1,10 @@
-# The Bendu — UI Design Brief
+# LogicEngine — UI Design Brief
+
+> **Name history (2026-09-04):** this product was formerly "The Bendu", a name subtly inspired by the Star Wars Bendu character (balance, the middle path, wisdom without allegiance). Renamed **LogicEngine** on 2026-09-04. The brand notes below that still say "Bendu" record the original design intent and are kept as written; a LogicEngine brand rationale, if one is developed, is a new section, not a rewrite of these.
 
 ## Product Purpose
 
-The Bendu is a personal clarity evaluation system. Users submit a claim, post, or message and receive a structured score for how clearly it communicates — not whether it's true, moral, or popular.
+LogicEngine is a personal clarity evaluation system. Users submit a claim, post, or message and receive a structured score for how clearly it communicates — not whether it's true, moral, or popular.
 
 The system evaluates five dimensions of communication clarity: specificity, evidence, assumptions, consistency, and precision. A guided chatbot (Mirror) walks users through the Toulmin argumentation model to strengthen their reasoning.
 
@@ -106,14 +108,14 @@ The designer may refine these hex values for the final palette, but the five-tie
 - **Gamification** — No points, badges, streaks, confetti, or "level up" language. This is not Duolingo for arguments.
 - **Social scoring language** — No "how you compare," no percentile rankings, no public profiles.
 - **Harsh judgment** — The language and visual tone should guide, not condemn. A Red score is an opportunity for clarity, not a failure.
-- **"Truth detector" framing** — The Bendu does not detect lies or verify facts. Nothing in the UI should suggest it does.
+- **"Truth detector" framing** — LogicEngine does not detect lies or verify facts. Nothing in the UI should suggest it does.
 - **Cluttered dashboards** — Minimal data density. One thing at a time. Breathing room.
 
 ---
 
 ## Visual Metaphor
 
-The Bendu draws on themes of:
+LogicEngine draws on themes of:
 
 - **Balance** — The three score blocks represent the balance between a single moment and longer trends. The overall system weighs multiple dimensions rather than reducing to pass/fail.
 - **The middle path** — Neutral tone. The tool is neither praising nor punishing. It observes.
@@ -274,7 +276,7 @@ Design coverage requested for:
 - Textarea should be comfortable to type in on mobile
 
 ### 11. Header / Navigation
-- App title ("The Bendu") — clickable, returns to home
+- App title ("LogicEngine") — clickable, returns to home
 - User email display
 - Sign out action
 - Current page context (which module is active)

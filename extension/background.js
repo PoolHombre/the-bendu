@@ -2,14 +2,14 @@ const API_BASE = 'https://the-bendu.vercel.app';
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
-    id: 'bendu-assess',
+    id: 'logicengine-assess',
     title: 'Assess Clarity',
     contexts: ['selection'],
   });
 });
 
 chrome.contextMenus.onClicked.addListener((info) => {
-  if (info.menuItemId === 'bendu-assess' && info.selectionText) {
+  if (info.menuItemId === 'logicengine-assess' && info.selectionText) {
     chrome.storage.local.set({ pendingText: info.selectionText });
     chrome.action.openPopup();
   }

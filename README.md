@@ -1,10 +1,10 @@
-# The Bendu
+# LogicEngine
 
 A personal clarity evaluation system that scores how clearly you communicate — not whether you're right.
 
 ## What It Does
 
-The Bendu takes a claim or statement you've written and scores it for communication clarity on a 0-100 scale. It evaluates five dimensions: specificity, evidence, assumptions, consistency, and precision. It does not judge truth, morality, or political correctness.
+LogicEngine takes a claim or statement you've written and scores it for communication clarity on a 0-100 scale. It evaluates five dimensions: specificity, evidence, assumptions, consistency, and precision. It does not judge truth, morality, or political correctness.
 
 A guided reasoning tool (Mirror) walks you through the Toulmin argumentation model step by step, asking about your evidence, warrants, qualifiers, and rebuttals — then reflects back where the clarity gaps are.
 
@@ -103,7 +103,7 @@ See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for the full deployment guide.
 - **Isolated data.** Users see only their own data. Supabase Row Level Security enforces this at the database level.
 - **No comparative scoring.** Users are never ranked against each other.
 - **No public leaderboard.**
-- **No trait inference.** The Bendu evaluates the submitted text, not the person.
+- **No trait inference.** LogicEngine evaluates the submitted text, not the person.
 - **Server-side secrets.** The Supabase service role key and Anthropic API key are used only in server-side API functions and are never exposed to the client.
 
 ## Current Status

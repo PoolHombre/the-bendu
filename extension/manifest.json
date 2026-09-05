@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "The Bendu",
+  "name": "LogicEngine",
   "version": "0.1.0",
-  "description": "Assess communication clarity on any text — powered by the Bendu scoring engine.",
+  "description": "Assess communication clarity on any text — powered by the LogicEngine scoring engine.",
   "permissions": ["contextMenus", "storage", "activeTab"],
   "host_permissions": [],
   "background": {

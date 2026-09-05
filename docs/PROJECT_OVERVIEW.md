@@ -1,14 +1,14 @@
 # Project Overview
 
-## What is The Bendu?
+## What is LogicEngine?
 
-The Bendu is a personal clarity evaluation tool. It scores how clearly a user communicates a claim — not whether the claim is true, moral, or popular.
+LogicEngine is a personal clarity evaluation tool. It scores how clearly a user communicates a claim — not whether the claim is true, moral, or popular.
 
-Users submit a claim (a sentence, paragraph, or argument), and The Bendu returns a clarity score (0-100) broken down across five dimensions. Over time, users can track their clarity trends and use a guided reasoning tool to strengthen their arguments.
+Users submit a claim (a sentence, paragraph, or argument), and LogicEngine returns a clarity score (0-100) broken down across five dimensions. Over time, users can track their clarity trends and use a guided reasoning tool to strengthen their arguments.
 
 ## Core Principle
 
-> The Bendu does not judge whether the user is correct, morally right, politically correct, or factually complete. It evaluates whether the submitted claim is clear, specific, supported, qualified, internally consistent, and aware of rebuttals.
+> LogicEngine does not judge whether the user is correct, morally right, politically correct, or factually complete. It evaluates whether the submitted claim is clear, specific, supported, qualified, internally consistent, and aware of rebuttals.
 
 ## What it is not
 
