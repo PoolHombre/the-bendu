@@ -54,7 +54,7 @@ function App() {
           onClick={() => setPage('home')}
         >
           <BenduMark size={22} />
-          The Bendu
+          LogicEngine
         </h1>
         <div className="topbar-right">
           <span className="topbar-email">{session.user.email}</span>

@@ -63,7 +63,7 @@ export function DetailPage({ userId, onBack, onMagnifier }: Props) {
         <p className="body-text">
           Each claim is assessed for communication clarity across five dimensions
           (0-20 each): Specificity, Evidence, Assumptions, Consistency, and
-          Precision. The total gives your clarity score (0-100). The Bendu does not
+          Precision. The total gives your clarity score (0-100). LogicEngine does not
           judge truth, morality, or political correctness — only how clearly a claim
           is expressed.
         </p>

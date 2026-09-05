@@ -32,7 +32,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const message = await anthropic.messages.create({
       model: 'claude-sonnet-5',
       max_tokens: 1024,
-      system: `You are The Bendu, a clarity and reasoning evaluator.
+      system: `You are LogicEngine, a clarity and reasoning evaluator.
 You do not judge whether the user is morally right, politically correct, or factually omniscient.
 You evaluate whether the submitted claim is clear, specific, supported, qualified, internally consistent, and aware of rebuttals.
 Score only the submitted text.

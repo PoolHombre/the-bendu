@@ -2,11 +2,11 @@
 
 ## Purpose
 
-The Bendu helps individuals improve the clarity of their communication by scoring claims they submit and guiding them through structured reasoning.
+LogicEngine helps individuals improve the clarity of their communication by scoring claims they submit and guiding them through structured reasoning.
 
 ## Core Principle
 
-The Bendu evaluates communication clarity only. It does not:
+LogicEngine evaluates communication clarity only. It does not:
 - Judge truth or factual accuracy
 - Assess moral or political correctness
 - Compare users to each other
@@ -23,7 +23,7 @@ The Bendu evaluates communication clarity only. It does not:
 ### Assessment (Home Page)
 1. User types a claim into the textarea.
 2. User clicks "Assess Clarity."
-3. The claim is sent to `/api/evaluate`, which calls Claude with the Bendu system prompt.
+3. The claim is sent to `/api/evaluate`, which calls Claude with the LogicEngine system prompt.
 4. Claude returns a JSON object with a total score (0-100), five component scores (0-20 each), and an explanation.
 5. The score is saved to `clarity_scores` in Supabase.
 6. The UI shows:

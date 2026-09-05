@@ -44,7 +44,7 @@ Scores a claim for communication clarity using Claude.
 
 ### Behavior
 
-1. Sends `post_text` to Claude Sonnet 5 with the Bendu system prompt.
+1. Sends `post_text` to Claude Sonnet 5 with the LogicEngine system prompt.
 2. Claude returns JSON with score, components, and explanation.
 3. Maps score to color using thresholds (0-20 Red, 21-40 Orange, 41-60 Yellow, 61-80 Green, 81-100 Blue).
 4. Inserts row into `clarity_scores` table via Supabase service role key.
@@ -132,7 +132,7 @@ Conducts a guided Toulmin reasoning conversation using Claude.
 
 1. Constructs a message array starting with the user's claim.
 2. Appends any conversation history.
-3. Sends to Claude Sonnet 5 with the Bendu identity prompt plus Toulmin sequencing instructions.
+3. Sends to Claude Sonnet 5 with the LogicEngine identity prompt plus Toulmin sequencing instructions.
 4. Returns Claude's response text.
 
 The Mirror does not persist conversations to the database. Conversation state is maintained client-side and sent with each request.

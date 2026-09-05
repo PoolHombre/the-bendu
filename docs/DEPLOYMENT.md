@@ -1,6 +1,6 @@
 # Deployment Guide
 
-The Bendu deploys to Vercel, which serves both the Vite-built frontend and the serverless API functions.
+LogicEngine deploys to Vercel, which serves both the Vite-built frontend and the serverless API functions.
 
 ## Architecture in Production
 

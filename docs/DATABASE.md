@@ -1,12 +1,12 @@
 # Database Schema
 
-The Bendu uses Supabase Postgres. The schema is defined in `supabase-schema.sql` at the project root.
+LogicEngine uses Supabase Postgres. The schema is defined in `supabase-schema.sql` at the project root.
 
 ## Tables
 
 ### auth.users (managed by Supabase)
 
-Supabase Auth manages the `auth.users` table automatically. The Bendu uses email/password sign-up. Relevant columns:
+Supabase Auth manages the `auth.users` table automatically. LogicEngine uses email/password sign-up. Relevant columns:
 
 | Column | Type | Description |
 |--------|------|-------------|
